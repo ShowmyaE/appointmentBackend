@@ -31,49 +31,7 @@ const initializeDbAndServer=async()=>{
 }
 initializeDbAndServer()
 app.get('/',async(req,res)=>{
-//     const insertData =  [{
-//         id: 10,
-//         title: 'cardDetails',
-//         description: 'idfc bank',
-//         date: 'july 26,2024'
-//       },
-//       {
-//         id: 11,
-//         title: 'cardDetails',
-//         description: 'csb bank',
-//         date: 'july 26,2024'
-//       },
-//       {
-//         id: 12,
-//         title: 'cardDetails',
-//         description: 'kvb bank',
-//         date: 'july 26,2024'
-//       }]
-//    insertData.forEach(async function(item){
-//     const insertquery=`INSERT INTO google_keep (id,title,description,date)
-//     VALUES ('${item.id}','${item.title}','${item.description}','${item.date}')`;
-//     const insertDetails=await db.run(insertquery);
-//    })
-
-//    const insertquery=`INSERT INTO google_keep (id,title,description,date)
-//     VALUES ('${insertData[0].id}','${insertData[0].title}','${insertData[0].description}','${insertData[0].date}')`;
-//     const createQuery = `CREATE TABLE registration (
-//     CustomerId int,
-//     EmailId varchar(255),
-//     Password varchar(255)
-// );`
-//     const userDbDetails=await db.run(createQuery);
-
-// const drop = `DROP TABLE registration`;
-// await db.run(drop)
-//     const createQuery = `CREATE TABLE registration (
-// CustomerId varchar(255),
-// EmailId varchar(255),
-// Password varchar(255)
-// );`
-
     const getUserQuery=`select * from registration`;
-    
     const userDbDetails=await db.all(getUserQuery);
     console.log('DB value',userDbDetails);
     res.send(userDbDetails)
@@ -121,6 +79,7 @@ else{
     res.send({data:"Failed to inserted"})
 }
 })
+
 app.post("/loginIn",async(req,res)=>{
     const {email, password} = req.body
     console.log('DB value',email,password)
